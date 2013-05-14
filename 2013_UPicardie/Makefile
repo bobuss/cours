@@ -1,10 +1,13 @@
 FILENAME=UPicardie\ 2013
 
-all: deps
-	./node_modules/.bin/marked $(FILENAME).md -o $(FILENAME).html
+HTML_FILES=\
+	templates/header.html\
+	templates/$(FILENAME).html\
+	templates/footer.html
 
-deps: ./node_modules/.bin/marked
+all: ./node_modules/.bin/marked
+	./node_modules/.bin/marked $(FILENAME).md -o templates/$(FILENAME).html
+	cat $(HTML_FILES) > $(FILENAME).html
+
+deps:
 	npm install marked
-
-	
-
